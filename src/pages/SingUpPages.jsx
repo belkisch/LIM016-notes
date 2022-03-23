@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./../context/AuthContext";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 import FormInput from "./../components/FormInput";
 import Footer from "./../components/Footer";
 
 export default function SingUpPages() {
+
   const { signup } = useAuth();
+
+ 
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -57,7 +64,9 @@ export default function SingUpPages() {
     e.preventDefault();
     setError("");
     try {
+
       await signup(values.email, values.password);
+
       navigate("/");
     } catch (er) {
       setError(er.message);
@@ -77,9 +86,15 @@ export default function SingUpPages() {
         <div id="Logo" className="containerLogin">
         <p >Tomar notas nunca fue tan sencillo</p>
           <figure><img className="imagenFondo" src="/img/anotar-rbg.png" alt=""></img></figure>
-        </div>        
+       </div>        
       </div>
       <div id="login" className="containerForm">        
+
+        </div>        
+      </div>
+  
+      <div id="login" className="containerForm">
+        
         <div id="login" className="login">
           <section>
             <p className="title">Regístrate</p>
@@ -97,8 +112,18 @@ export default function SingUpPages() {
                   <p>¿Has Olvidado la Contraseña?</p>
                   <button>Regístrate</button>
                 </form> 
+
             </div>        
             <p>¿Tienes una cuenta? <Link to="/">LogIn</Link></p>            
+
+            </div>                
+           
+            <p>O Inicia Sessión Con:</p>
+            <div style={{fontSize:"2em", color: "#2A3F88", textAlign: "center"}}>           
+              <FontAwesomeIcon icon={faGoogle} /> {" "}
+            </div>
+            <p>¿No tienes una cuenta? <Link to="/">LogIn</Link></p>            
+
           </section>           
         </div>
       </div>     
